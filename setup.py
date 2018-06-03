@@ -8,18 +8,21 @@ import os
 # Used for the long_description.  It's nice, because now 1) we have a top level
 # README file and 2) it's easier to type in the README file than to put a raw
 # string in below ...
+
+
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
-REQUIREMENTS = []
+
+REQUIREMENTS = ['contracts']
 EXCLUDE_FROM_PACKAGES = []
 
 setup(
     name='diskspace',
     version='0.0.1',
-    url='https://github.com/matheusfaria/diskspace',
-    author='Matheus Faria',
-    author_email='matheus.sousa.faria@gmail.com',
+    url='https://github.com/TecProg-20181/04-diskspace-Mateusas3s',
+    author='Mateus Augusto Sousa e Silva',
+    author_email='mateusaugusto-2009@hotmail.com',
     description='Command to analyze how much each file occupies in a folder',
     license='LICENSE.txt',
     packages=find_packages(exclude=EXCLUDE_FROM_PACKAGES),
