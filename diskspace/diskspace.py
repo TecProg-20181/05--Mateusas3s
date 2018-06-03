@@ -54,6 +54,10 @@ def bytes_to_readable(blocks):
     return '{:.2f}{}'.format(round(byts/(1024.0**count), 2), labels[count])
 
 
+@contract(file_tree='dict(str: dict(str: str|list(str)|int))',
+          file_tree_node='dict(str: str|list(str)|int)',
+          path='str', largest_size='int,>=0',
+          total_size='int,>=0', depth='int,>=0')
 def print_tree(file_tree, file_tree_node, path, largest_size, total_size,
                depth=0):
     percentage = int(file_tree_node['size'] / float(total_size) * 100)
