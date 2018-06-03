@@ -56,7 +56,7 @@ def bytes_to_readable(blocks):
 
 @contract(file_tree='dict(str: dict(str: str|list(str)|int))',
           file_tree_node='dict(str: str|list(str)|int)',
-          path='str', largest_size='int,>=0',total_size='int,>=0',
+          path='str', largest_size='int,>=0', total_size='int,>=0',
           depth='int,>=0', returns='None')
 def print_tree(file_tree, file_tree_node, path, largest_size, total_size,
                depth=0):
@@ -76,6 +76,7 @@ def print_tree(file_tree, file_tree_node, path, largest_size, total_size,
         for child in file_tree_node['children']:
             print_tree(file_tree, file_tree[child], child, largest_size,
                        total_size, depth + 1)
+
 
 @contract(directory='str', depth='int', order='bool', returns='None')
 def show_space_list(directory='.', depth=-1, order=True):
@@ -145,6 +146,7 @@ def show_space_list(directory='.', depth=-1, order=True):
                largest_size, total_size)
 
 
+@contract(returns='None')
 def main():
     if not args.all:
         show_space_list(args.directory, args.depth,
