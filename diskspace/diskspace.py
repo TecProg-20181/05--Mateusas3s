@@ -36,7 +36,7 @@ args = parser.parse_args()
 
 
 # ==== Disk Space ====
-
+@contract(command='str')
 def subprocess_check_output(command):
     return subprocess.check_output(command.strip().split(' '))
 
