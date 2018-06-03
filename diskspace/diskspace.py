@@ -3,6 +3,7 @@
 
 from __future__ import print_function
 
+from contracts import contract
 import argparse
 import os
 import subprocess
@@ -40,6 +41,7 @@ def subprocess_check_output(command):
     return subprocess.check_output(command.strip().split(' '))
 
 
+@contract(blocks='int,>=0')
 def bytes_to_readable(blocks):
     byts = blocks * 512
     readable_bytes = byts
@@ -145,6 +147,7 @@ def main():
                         order=(args.order == 'desc'))
     else:
         show_space_list(args.directory, order=(args.order == 'desc'))
+
 
 if __name__ == '__main__':
     main()
