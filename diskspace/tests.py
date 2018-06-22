@@ -4,7 +4,6 @@ from diskspace import print_tree
 from diskspace import show_space_list
 
 import unittest
-import os
 import StringIO
 import subprocess
 import sys
@@ -38,6 +37,20 @@ class DiskspaceTest(unittest.TestCase):
         print_tree(self.file_tree, self.file_tree_node, self.path,
                    self.largest_size, self.total_size)
         result = "10.00Kb  100%  teste\n"
+        sys.stdout = sys.__stdout__
+        self.assertEqual(result, cap.getvalue())
+
+    def test_show_space_list(self):
+        cap = StringIO.StringIO()
+        sys.stdout = cap
+
+        show_space_list(self.path)
+        top = "   Size   (%)  File\n"
+        path = "/home/mateus/Tec_Prog/05--Mateusas3s/teste"
+        file = "10.00Kb  100%  " + path + "\n"
+        in_file_1 = " 4.00Kb   40%  " + path + "/teste_2\n"
+        in_file_2 = " 4.00Kb   40%  " + path + "/teste_1\n"
+        result = top + file + in_file_1 + in_file_2
         sys.stdout = sys.__stdout__
         self.assertEqual(result, cap.getvalue())
 
