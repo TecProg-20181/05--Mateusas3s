@@ -16,7 +16,7 @@ class DiskspaceTest(unittest.TestCase):
         self.path = 'teste'
         self.largest_size = 6
         self.total_size = 4
-        self.file_tree_node = {'print_size': '6.00Kb',
+        self.file_tree_node = {'print_size': '10.00Kb',
                                'children': [], 'size': self.total_size}
         self.file_tree = {self.path: self.file_tree_node}
 
@@ -30,6 +30,16 @@ class DiskspaceTest(unittest.TestCase):
         blocks = 64
         result = "32.00Kb"
         self.assertEqual(bytes_to_readable(blocks), result)
+
+    def test_print_tree(self):
+        cap = StringIO.StringIO()
+        sys.stdout = cap
+
+        print_tree(self.file_tree, self.file_tree_node, self.path,
+                   self.largest_size, self.total_size)
+        result = "10.00Kb  100%  teste\n"
+        sys.stdout = sys.__stdout__
+        self.assertEqual(result, cap.getvalue())
 
 
 if __name__ == '__main__':
